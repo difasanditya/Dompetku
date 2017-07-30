@@ -1,26 +1,80 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Dompetku
 
-## How to use this template
+Dompetku is mobile application based on Android and iOS for managing financial.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+## Getting Started
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### With the Ionic CLI:
+### Prerequisites
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+What things you need to install the software and how to install them
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
+```
+Give examples
 ```
 
-Then, to run it, cd into `mySideMenu` and run:
+### Installing
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+A step by step series of examples that tell you have to get a development env running
+
+Say what the step will be
+
+```
+Give the example
 ```
 
-Substitute ios for android if not on a Mac.
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Ionic](http://ionicframework.com/) - The web framework used
+* [VS Code](https://code.visualstudio.com/) - Text editor used
+
+## Versioning
+
+## Authors
+
+* **Difa Sanditya** - *Lead Programmer* - [Difa Sanditya](https://github.com/difasanditya)
+* **Martinus** - *Programmer* - [Martinus](https://github.com/)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
 
