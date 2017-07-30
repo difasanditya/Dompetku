@@ -13,6 +13,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
+import { DatabaseProvider } from '../providers/database/database';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -43,7 +44,8 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ToastControllerProvider,
-    GooglePlus
+    GooglePlus,
+    DatabaseProvider
   ]
 })
 export class AppModule {}
