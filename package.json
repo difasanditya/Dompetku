@@ -1,8 +1,8 @@
 {
     "name": "Dompetku",
     "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "author": "Difa Sanditya",
+    "homepage": "https://dompetku.difasanditya.com/",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
@@ -48,7 +48,7 @@
         "ionic": "3.6.0",
         "typescript": "2.3.4"
     },
-    "description": "An Ionic project",
+    "description": "Application for managing financial.",
     "cordova": {
         "plugins": {
             "cordova-plugin-googleplus": {
