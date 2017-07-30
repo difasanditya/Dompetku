@@ -1,0 +1,19 @@
+page-login {
+
+    .div{
+        width: 240px;
+        margin: 32px auto;
+    }
+
+    .content-md {
+        background-color: $green;
+    }
+
+    button{
+        max-width: 240px;
+    }
+
+    ion-icon{
+        margin-left: 4px;
+    }
+}

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "826148477623",
+    "project_id": "dompetku-175006"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826148477623:android:dfa57688c4514cc2",
+        "android_client_info": {
+          "package_name": "com.difasanditya.dompetku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826148477623-f2mrd0msrt9nih7jhbrmaeisrjd2hkpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.difasanditya.dompetku",
+            "certificate_hash": "98204faa4f4401a543d5ca5cb50b8f14fb87f8da"
+          }
+        },
+        {
+          "client_id": "826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl4n8BtlPoqrdxJypDscTSN-CDfwjyAAk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
