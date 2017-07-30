@@ -9,6 +9,7 @@ import { TransactionListPage } from '../pages/transaction-list/transaction-list'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
@@ -16,12 +17,6 @@ import { ToastControllerProvider } from '../providers/toast-controller/toast-con
 const cloudSettings: CloudSettings = {
   'core': {
     'app_id': '3f51de2f'
-  },
-  'auth': {
-    'google': {
-      'webClientId': '826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com',
-      'scope': []
-    }
   }
 }
 
@@ -47,7 +42,8 @@ const cloudSettings: CloudSettings = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ToastControllerProvider
+    ToastControllerProvider,
+    GooglePlus
   ]
 })
 export class AppModule {}

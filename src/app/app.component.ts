@@ -2,12 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { GoogleAuth} from '@ionic/cloud-angular';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
 
-import { Storage } from '@ionic/storage';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
 import { LoadingController } from 'ionic-angular';
 
@@ -21,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public googleAuth: GoogleAuth, private toastController: ToastControllerProvider, private storage: Storage, public loading: LoadingController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -52,9 +51,8 @@ export class MyApp {
     let loader = this.loading.create({
       content: 'Please wait while we log you out',
     });
-    loader.present().then(() => {  
-      this.googleAuth.logout().then(() => {
-        this.storage.set('dompetku.difasanditya.com_loggedin', false);
+    loader.present().then(() => {
+      this.googlePlus.logout().then(() => {
         this.nav.setRoot(LoginPage);
         loader.dismiss();        
         this.toastController.showToast("Logout Success");

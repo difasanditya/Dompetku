@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
-import { User } from '@ionic/cloud-angular';
 
 @Component({
   selector: 'page-transaction-list',
@@ -8,8 +7,9 @@ import { User } from '@ionic/cloud-angular';
 })
 export class TransactionListPage {
 
-  constructor(public navCtrl: NavController, private menuCtrl: MenuController, public user: User) {
+  constructor(public navCtrl: NavController, private menuCtrl: MenuController) {
     this.menuCtrl.enable(true, 'myMenu');
+    
   }
 
 }
