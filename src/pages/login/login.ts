@@ -4,6 +4,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
 import { LoadingController } from 'ionic-angular';
+import { DatabaseProvider } from './../../providers/database/database';
 
 import { TransactionListPage } from '../transaction-list/transaction-list';
 
@@ -13,23 +14,9 @@ import { TransactionListPage } from '../transaction-list/transaction-list';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, private menuCtrl: MenuController, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus) {
+  constructor(public navCtrl: NavController, private menuCtrl: MenuController, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider) {
     this.menuCtrl.close();
     this.menuCtrl.enable(false, 'myMenu');
-    let loader = this.loading.create({
-      content: 'Please wait while we getting ready',
-    });
-    loader.present().then(() =>{
-      this.googlePlus.trySilentLogin({
-        'scopes': '',
-        'webClientId': '826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com',
-        'offline': true
-      }).then(res => {
-        this.navCtrl.setRoot(TransactionListPage);
-        alert(JSON.stringify(res));
-      });
-      loader.dismiss();
-    });
   }
 
   login(){
@@ -44,7 +31,8 @@ export class LoginPage {
       })
       .then(res => {
         this.navCtrl.setRoot(TransactionListPage);
-        alert(JSON.stringify(res));        
+        this.databaseprovider.setUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
+        this.databaseprovider.createTransaction();
         loader.dismiss();
         this.toastController.showToast("Login success!");
       }).catch(e => {

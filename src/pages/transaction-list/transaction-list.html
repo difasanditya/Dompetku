@@ -10,4 +10,10 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <ion-item *ngFor="let trans of transactions">
+      <h2>{{ trans.id }}. {{ trans.description }}</h2>
+      <p>{{ trans.amount }}, category: {{ trans.category }} on {{ trans.date }}-{{ trans.month }}-{{ trans.year }}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
+import { TransactionAddPage } from '../pages/transaction-add/transaction-add';
+import { DatabaseManipulationPage } from '../pages/database-manipulation/database-manipulation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,6 +16,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
 import { DatabaseProvider } from '../providers/database/database';
+import { SQLite } from '@ionic-native/sqlite';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -25,7 +29,9 @@ const cloudSettings: CloudSettings = {
   declarations: [
     MyApp,
     LoginPage,
-    TransactionListPage
+    TransactionListPage,
+    TransactionAddPage,
+    DatabaseManipulationPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,9 @@ const cloudSettings: CloudSettings = {
   entryComponents: [
     MyApp,
     LoginPage,
-    TransactionListPage
+    TransactionListPage,
+    TransactionAddPage,
+    DatabaseManipulationPage
   ],
   providers: [
     StatusBar,
@@ -45,7 +53,9 @@ const cloudSettings: CloudSettings = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ToastControllerProvider,
     GooglePlus,
-    DatabaseProvider
+    DatabaseProvider,
+    SQLite,
+    NativeStorage
   ]
 })
 export class AppModule {}

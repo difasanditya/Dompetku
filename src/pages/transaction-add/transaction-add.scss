@@ -1,0 +1,22 @@
+page-transaction-add {
+    $text-input-md-margin-start: 8px;
+    ion-label {
+        flex: 0 0 20px !important;
+        width: initial !important;
+        min-width: initial !important;
+        max-width: initial !important;
+    }
+    ion-label[fixed] {
+        flex: 0 0 28px !important;
+    }
+    ion-select {
+        max-width: initial;
+    }
+    .item-inner {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+    .datetime-md {
+        padding-left: 8px;
+    }
+}
