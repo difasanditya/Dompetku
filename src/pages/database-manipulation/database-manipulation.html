@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Database</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button (click)="login();">Login</button>
+  <button ion-button (click)="silet_login();">Silent Login</button>
+  <button ion-button (click)="database_ready();">Database Ready</button>
+  <button ion-button (click)="create_table_user();">Create Table User</button>
+  <button ion-button (click)="create_table_transaction();">Create Table Transaction</button>
+  <button ion-button (click)="drop_table_user();">Drop Table User</button>
+  <button ion-button (click)="drop_table_transaction();">Drop Table Transaction</button>
+  <button ion-button (click)="set_storage(true);">Set Storage True</button>
+  <button ion-button (click)="set_storage(false);">Set Storage False</button>
+  <button ion-button (click)="remove_storage();">Remove Storage</button>
+  <button ion-button (click)="clear_storage();">Clear Storage</button>
+  <button ion-button (click)="get_keys();">Get All Keys</button>
+  <button ion-button (click)="get_storage();">Get Storage</button>
+  <button ion-button (click)="check_table_user();">Check Table Exists</button>
+</ion-content>

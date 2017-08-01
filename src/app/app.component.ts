@@ -6,7 +6,10 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
+import { TransactionAddPage } from '../pages/transaction-add/transaction-add';
+import { DatabaseManipulationPage } from '../pages/database-manipulation/database-manipulation';
 
+import { DatabaseProvider } from '../providers/database/database';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
 import { LoadingController } from 'ionic-angular';
 
@@ -20,16 +23,22 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Transaction', component: TransactionListPage }
+      { title: 'Transaction', component: TransactionListPage },
+      { title: 'Database', component: DatabaseManipulationPage }
       // { title: 'Home', component: HomePage },
       // { title: 'List', component: ListPage }
     ];
 
+    this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.userAuth").then(value => {
+      if(value){
+        this.rootPage = TransactionListPage;        
+      }
+    })
   }
 
   initializeApp() {
