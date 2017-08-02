@@ -1,19 +1,55 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dompetku-green">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Transaction</ion-title>
   </ion-navbar>
+  <ion-segment color="light" [(ngModel)]="months">
+    <ion-segment-button value="past">
+      Past Months
+    </ion-segment-button>
+    <ion-segment-button value="present">
+      This Month
+    </ion-segment-button>
+    <ion-segment-button value="future">
+      Future
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 
 <ion-content padding>
-
-  <ion-list>
+  <div [ngSwitch]="months">
+    <ion-list *ngSwitchCase="'past'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>Ruby</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'present'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-kitten-1.jpg">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'future'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-kitten-1.jpg">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- <ion-list>
     <ion-item *ngFor="let trans of transactions">
       <h2>{{ trans.id }}. {{ trans.description }}</h2>
       <p>{{ trans.amount }}, category: {{ trans.category }} on {{ trans.date }}-{{ trans.month }}-{{ trans.year }}</p>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

@@ -20,7 +20,7 @@ export class MyApp {
   image: string;
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = TransactionListPage;
 
   pages: Array<{title: string, component: any}>;
 

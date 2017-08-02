@@ -7,10 +7,12 @@ import { DatabaseProvider } from './../../providers/database/database';
   templateUrl: 'transaction-list.html',
 })
 export class TransactionListPage {
+  months: string;
   form = {};
   transactions = [];
 
   constructor(public navCtrl: NavController, private menuCtrl: MenuController, private databaseprovider: DatabaseProvider) {
+    this.months = "present";
     this.menuCtrl.enable(true, 'myMenu');
     this.databaseprovider.getDatabaseState().subscribe(rdy => {
       if (rdy) {
