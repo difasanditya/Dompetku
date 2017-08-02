@@ -17,6 +17,7 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  image: string;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
@@ -24,8 +25,16 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider) {
+    this.image = "assets/img/icon.png";
+    this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user.auth").then(value => {
+      if(value){
+        this.rootPage = TransactionListPage;
+        this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user.imageUrl").then(data => {
+          this.image = data;
+        });
+      }
+    })
     this.initializeApp();
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Transaction', component: TransactionListPage },
@@ -34,11 +43,6 @@ export class MyApp {
       // { title: 'List', component: ListPage }
     ];
 
-    this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.userAuth").then(value => {
-      if(value){
-        this.rootPage = TransactionListPage;        
-      }
-    })
   }
 
   initializeApp() {
@@ -63,7 +67,8 @@ export class MyApp {
     loader.present().then(() => {
       this.googlePlus.logout().then(() => {
         this.nav.setRoot(LoginPage);
-        loader.dismiss();        
+        this.databaseprovider.nativeStorage.clear();
+        loader.dismiss();
         this.toastController.showToast("Logout Success");
       }).catch(e => {
         loader.dismiss();

@@ -7,7 +7,6 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class DatabaseProvider {
-  table_name: string;
   database: SQLiteObject;
   private databaseReady: BehaviorSubject<boolean>;
 
@@ -25,22 +24,25 @@ export class DatabaseProvider {
   }
   
   setUser(userId, email, displayName, imageUrl, idToken, serverAuthCode){
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userId", userId);
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userEmail", email);
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userName", displayName);
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userImageUrl", imageUrl);
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userIdToken", idToken);
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userServerAuth", serverAuthCode);
-    this.nativeStorage.setItem("dompetku.difasanditya.com.userAuth", true);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.id", userId);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.email", email);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.name", displayName);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.imageUrl", imageUrl);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.idToken", idToken);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.serverAuth", serverAuthCode);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.auth", true);
+    this.nativeStorage.setItem("dompetku.difasanditya.com.user.table", "dompetku.difasanditya.com.transaction."+userId);
   }
 
   createTransaction(){
-    this.database.executeSql("CREATE TABLE IF NOT EXISTS dompetku_transaction_"+this.table_name+"(id INTEGER PRIMARY KEY AUTOINCREMENT,amount INTEGER,category TEXT,description TEXT,date INTEGER,month INTEGER,year INTEGER);", []);
+    let table_name = this.nativeStorage.getItem("dompetku.difasanditya.com.user.table").then(data => {return data});
+    this.database.executeSql("CREATE TABLE IF NOT EXISTS "+table_name+"(id INTEGER PRIMARY KEY AUTOINCREMENT,amount INTEGER,category TEXT,description TEXT,date INTEGER,month INTEGER,year INTEGER);", []);
   }
   
   addTransaction(amount, category, description, date, month, year) {
+    let table_name = this.nativeStorage.getItem("dompetku.difasanditya.com.user.table").then(data => {return data});
     let data = [amount, category, description, date, month, year];
-    return this.database.executeSql("INSERT INTO dompetku_transaction_"+this.table_name+"(amount, category, description, date, month, year) VALUES (?, ?, ?, ?, ? ,?)", data).then(data => {
+    return this.database.executeSql("INSERT INTO "+table_name+"(amount, category, description, date, month, year) VALUES (?, ?, ?, ?, ? ,?)", data).then(data => {
       return data;
     }, err => {
       console.log('Error: ', err);
@@ -49,7 +51,8 @@ export class DatabaseProvider {
   }
  
   getTransaction(month, year) {
-    return this.database.executeSql("SELECT * FROM dompetku_transaction_"+this.table_name+" WHERE month="+month+" AND year="+year, []).then((data) => {
+    let table_name = this.nativeStorage.getItem("dompetku.difasanditya.com.user.table").then(data => {return data});
+    return this.database.executeSql("SELECT * FROM "+table_name+" WHERE month="+month+" AND year="+year, []).then((data) => {
       let transactions = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {

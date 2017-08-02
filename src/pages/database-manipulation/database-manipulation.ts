@@ -20,7 +20,7 @@ export class DatabaseManipulationPage {
       'webClientId': '826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com',
       'offline': true
     }).then(res => {
-      this.databaseprovider.createUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
+      this.databaseprovider.setUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
       this.databaseprovider.createTransaction();
       alert("Login success!");
     }).catch(e => {
@@ -35,7 +35,7 @@ export class DatabaseManipulationPage {
       'webClientId': '826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com',
       'offline': true
     }).then(res => {
-      this.databaseprovider.createUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
+      this.databaseprovider.setUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
       this.databaseprovider.createTransaction();
       alert("Login success!");
     }).catch(e => {
@@ -53,30 +53,14 @@ export class DatabaseManipulationPage {
     }
   }
 
-  create_table_user(){
-    // this.databaseprovider.createUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
-  }
-
-  create_table_transaction(){
-    // this.databaseprovider.createTransaction();
-  }
-
-  drop_table_user(){
-    // this.databaseprovider.dropUser();
-  }
-
-  drop_table_transaction(){
-    // this.databaseprovider.dropTransaction();
-  }
-
   set_storage(bool){
-    this.databaseprovider.nativeStorage.setItem("dompetku.difasanditya.com_user_auth", bool).then(() => {
+    this.databaseprovider.nativeStorage.setItem("dompetku.difasanditya.com.user.auth", bool).then(() => {
       alert("Stored");
     });
   }
 
   remove_storage(){
-    this.databaseprovider.nativeStorage.remove("dompetku.difasanditya.com_user_auth").then(() =>{
+    this.databaseprovider.nativeStorage.remove("dompetku.difasanditya.com.user.auth").then(() =>{
       alert("Removed");
     }).catch(err => {
       alert("error: "+JSON.stringify(err));
@@ -100,21 +84,10 @@ export class DatabaseManipulationPage {
   }
 
   get_storage(){
-    this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com_user_auth").then(data => {
+    this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user.auth").then(data => {
       alert("value: "+data);
     }).catch(err => {
       alert("error: "+JSON.stringify(err));
-    });
-  }
-
-  check_table_user(){
-    this.databaseprovider.checkUser().then(data => {
-      if(data){
-        alert("Exist");
-      }
-      else{
-        alert("Not Exist");
-      }
     });
   }
 
