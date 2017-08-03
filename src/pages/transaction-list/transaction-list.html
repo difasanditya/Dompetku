@@ -1,51 +1,22 @@
-<ion-header>
+<ion-header no-shadow no-border>
   <ion-navbar color="dompetku-green">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Transaction</ion-title>
   </ion-navbar>
-  <ion-segment color="light" [(ngModel)]="months">
-    <ion-segment-button value="past">
-      Past Months
-    </ion-segment-button>
-    <ion-segment-button value="present">
-      This Month
-    </ion-segment-button>
-    <ion-segment-button value="future">
-      Future
-    </ion-segment-button>
-  </ion-segment>
 </ion-header>
 
 
-<ion-content padding>
-  <div [ngSwitch]="months">
-    <ion-list *ngSwitchCase="'past'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>Ruby</h2>
-      </ion-item>
-    </ion-list>
-    <ion-list *ngSwitchCase="'present'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
-      </ion-item>
-    </ion-list>
-    <ion-list *ngSwitchCase="'future'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
-      </ion-item>
-    </ion-list>
-  </div>
+<ion-content>
+  <super-tabs id="mainTabs" selectedTabIndex="1" toolbarColor="light" toolbarBackground="dompetku-green" indicatorColor="light" badgeColor="light" [config]="{ sideMenu: 'left' }">
+    <super-tab [root]="page1" title="Past" id="page1"></super-tab>
+    <super-tab [root]="page2" title="Present" id="page2"></super-tab>
+    <super-tab [root]="page3" title="Future" id="page3"></super-tab>
+  </super-tabs>
+  <ion-fab right bottom>
+    <button ion-fab color="dompetku-green" (click)="addPage();"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <!-- <ion-list>
     <ion-item *ngFor="let trans of transactions">
       <h2>{{ trans.id }}. {{ trans.description }}</h2>

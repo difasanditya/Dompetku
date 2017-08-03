@@ -11,6 +11,7 @@ import { DatabaseManipulationPage } from '../pages/database-manipulation/databas
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { SuperTabsModule } from 'ionic2-super-tabs';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
@@ -37,7 +38,8 @@ const cloudSettings: CloudSettings = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     CloudModule.forRoot(cloudSettings),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    SuperTabsModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
