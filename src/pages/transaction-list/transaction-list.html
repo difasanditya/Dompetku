@@ -7,7 +7,6 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
   <super-tabs id="mainTabs" selectedTabIndex="1" toolbarColor="light" toolbarBackground="dompetku-green" indicatorColor="light" badgeColor="light" [config]="{ sideMenu: 'left' }">
     <super-tab [root]="page1" title="Past" id="page1"></super-tab>
@@ -17,10 +16,4 @@
   <ion-fab right bottom>
     <button ion-fab color="dompetku-green" (click)="addPage();"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-  <!-- <ion-list>
-    <ion-item *ngFor="let trans of transactions">
-      <h2>{{ trans.id }}. {{ trans.description }}</h2>
-      <p>{{ trans.amount }}, category: {{ trans.category }} on {{ trans.date }}-{{ trans.month }}-{{ trans.year }}</p>
-    </ion-item>
-  </ion-list> -->
 </ion-content>

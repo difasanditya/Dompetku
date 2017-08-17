@@ -1,31 +1,29 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Events, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
-import { TransactionAddPage } from '../pages/transaction-add/transaction-add';
-import { DatabaseManipulationPage } from '../pages/database-manipulation/database-manipulation';
+
+import { LoadingController } from 'ionic-angular';
 
 import { DatabaseProvider } from '../providers/database/database';
-import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
-import { LoadingController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  image: string;
+  image: string = "assets/img/icon.png";
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TransactionListPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider) {
-    this.image = "assets/img/icon.png";
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider, private events: Events) {
+    /*
     this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user.auth").then(value => {
       if(value){
         this.rootPage = TransactionListPage;
@@ -34,30 +32,59 @@ export class MyApp {
         });
       }
     })
-    this.initializeApp();
-    // used for an example of ngFor and navigation
+    */
+    let loader = this.loading.create({
+      content: 'Please wait',
+    });
+    loader.present().then(() => {
+      this.googlePlus.trySilentLogin({
+        'scopes': '',
+        'webClientId': '826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com',
+        'offline': true
+      }).then(res =>{
+        this.events.publish('user:login', res["userId"], res["email"], res["displayName"], res["imageUrl"]);
+        this.databaseprovider.setUser(res["userId"], res["email"], res["displayName"], res["imageUrl"]);
+        this.rootPage = TransactionListPage;
+        this.initializeApp();
+      }).catch(err => {
+        console.log(err);
+        this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.auth").then(val => {
+          if(val){
+            this.rootPage = TransactionListPage;
+            this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user").then(res => {
+              this.events.publish('user:login', res["userId"], res["email"], res["displayName"], res["imageUrl"]);
+            })
+          }
+        })
+        this.initializeApp();        
+      });
+    });
     this.pages = [
       { title: 'Transaction', component: TransactionListPage },
-      { title: 'Database', component: DatabaseManipulationPage }
-      // { title: 'Home', component: HomePage },
-      // { title: 'List', component: ListPage }
+      //{ title: 'Database', component: DatabaseManipulationPage }
     ];
-
+    this.eventListener();
+    loader.dismiss();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  eventListener(){
+    this.events.subscribe('user:login', (userId, email, name, img) => {
+      this.image = img;
+    });
+    this.events.subscribe('user:logout', () => {
+      
+    });
   }
 
   logout(){
@@ -66,14 +93,16 @@ export class MyApp {
     });
     loader.present().then(() => {
       this.googlePlus.logout().then(() => {
+        this.events.publish('user:logout');
         this.nav.setRoot(LoginPage);
-        this.databaseprovider.nativeStorage.clear();
+        this.databaseprovider.deleteTransaction();
+        this.databaseprovider.nativeStorage.setItem("dompetku.difasanditya.com.auth", false);
         loader.dismiss();
-        this.toastController.showToast("Logout Success");
-      }).catch(e => {
+        //this.toastController.showToast("Logout Success");
+      }).catch(err => {
         loader.dismiss();
-        console.log(e);
-        this.toastController.showToast("Logout Fail! Error code: " + JSON.stringify(e));
+        console.log(err);
+        //this.toastController.showToast("Logout Fail! Error code: " + JSON.stringify(e));
       });
     });
   }

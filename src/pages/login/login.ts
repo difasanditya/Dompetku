@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { Events, NavController, MenuController, LoadingController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 
-import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
-import { LoadingController } from 'ionic-angular';
-import { DatabaseProvider } from './../../providers/database/database';
-
 import { TransactionListPage } from '../transaction-list/transaction-list';
+
+import { DatabaseProvider } from '../../providers/database/database';
 
 @Component({
   selector: 'page-login',
@@ -14,7 +12,7 @@ import { TransactionListPage } from '../transaction-list/transaction-list';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, private menuCtrl: MenuController, private toastController: ToastControllerProvider, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider) {
+  constructor(public navCtrl: NavController, private menuCtrl: MenuController, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider, private events: Events) {
     this.menuCtrl.close();
     this.menuCtrl.enable(false, 'myMenu');
   }
@@ -28,18 +26,18 @@ export class LoginPage {
         'scopes': '',
         'webClientId': '826148477623-qcvvqr7t304mfdh1dq9uat7e1jg2eegu.apps.googleusercontent.com',
         'offline': true
-      })
-      .then(res => {
-        this.navCtrl.setRoot(TransactionListPage);
-        this.databaseprovider.setUser(res["userId"], res["email"], res["displayName"], res["imageUrl"], res["idToken"], res["serverAuthCode"]);
+      }).then(res => {
         this.databaseprovider.createTransaction();
+        this.events.publish('user:login', res["userId"], res["email"], res["displayName"], res["imageUrl"]);
+        this.databaseprovider.setUser(res["userId"], res["email"], res["displayName"], res["imageUrl"]);
+        this.navCtrl.setRoot(TransactionListPage);
         loader.dismiss();
-        this.toastController.showToast("Login success!");
+        //this.toastController.showToast("Login success!");
       }).catch(e => {
         console.error(e);
         loader.dismiss();
         if(JSON.stringify(e) != '12501'){
-          this.toastController.showToast("Login error! Error code: " + JSON.stringify(e));
+          //this.toastController.showToast("Login error! Error code: " + JSON.stringify(e));
         }
       });
     });

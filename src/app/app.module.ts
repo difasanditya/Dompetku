@@ -6,7 +6,9 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
 import { TransactionAddPage } from '../pages/transaction-add/transaction-add';
-import { DatabaseManipulationPage } from '../pages/database-manipulation/database-manipulation';
+import { TransactionPastPage } from '../pages/transaction-past/transaction-past';
+import { TransactionPresentPage } from '../pages/transaction-present/transaction-present';
+import { TransactionFuturePage } from '../pages/transaction-future/transaction-future';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,10 +17,11 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
-import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
-import { DatabaseProvider } from '../providers/database/database';
 import { SQLite } from '@ionic-native/sqlite';
 import { NativeStorage } from '@ionic-native/native-storage';
+
+import { DatabaseProvider } from '../providers/database/database';
+import { UIProvider } from '../providers/ui/ui';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -32,7 +35,9 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     TransactionListPage,
     TransactionAddPage,
-    DatabaseManipulationPage
+    TransactionPastPage,
+    TransactionPresentPage,
+    TransactionFuturePage
   ],
   imports: [
     BrowserModule,
@@ -47,17 +52,19 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     TransactionListPage,
     TransactionAddPage,
-    DatabaseManipulationPage
+    TransactionPastPage,
+    TransactionPresentPage,
+    TransactionFuturePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ToastControllerProvider,
     GooglePlus,
-    DatabaseProvider,
     SQLite,
-    NativeStorage
+    NativeStorage,
+    DatabaseProvider,
+    UIProvider
   ]
 })
 export class AppModule {}
