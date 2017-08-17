@@ -71,8 +71,26 @@ export class DatabaseProvider {
     });
   }
 
-  getTransaction(month, year){
-    return this.database.executeSql("SELECT * FROM dompetku_transactions WHERE month="+month+" AND year="+year+" ORDER BY date ASC, description ASC;", []).then((data) => {
+  getTransacton(id){
+    return this.database.executeSql("SELECT * FROM dompetku_transactions WHERE id="+id+";", []).then(data => {
+      let transaction = {
+        id: data.rows.item(0).id,
+        amount: data.rows.item(0).amount,
+        category: data.rows.item(0).category,
+        description: data.rows.item(0).description,
+        date: data.rows.item(0).date,
+        month: data.rows.item(0).month,
+        year: data.rows.item(0).year
+      };
+      return transaction;
+    }).catch(err => {
+      console.log('Error: ', err);
+      return [];
+    });
+  }
+
+  getTransactions(month, year){
+    return this.database.executeSql("SELECT * FROM dompetku_transactions WHERE month="+month+" AND year="+year+" ORDER BY date ASC, description ASC;", []).then(data => {
       let transactions = [];
       if (data.rows.length > 0) {
           for (var i = 0; i < data.rows.length; i++) {

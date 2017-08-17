@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="dompetku-green">
+    <ion-title>Category</ion-title>
+  </ion-navbar>
+  <ion-segment color="light" [(ngModel)]="category">
+    <ion-segment-button value="income">
+      Income
+    </ion-segment-button>
+    <ion-segment-button value="expense">
+      Expense
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="category">
+    <ion-list *ngSwitchCase="'income'">
+      <button ion-button full *ngFor="let category of income" (click)="dismiss(category);">
+        {{ category }}
+      </button>
+    </ion-list>
+    <ion-list *ngSwitchCase="'expense'">
+      <button ion-button full *ngFor="let category of expense" (click)="dismiss(category);">
+        {{ category }}
+      </button>
+    </ion-list>
+  </div>
+</ion-content>

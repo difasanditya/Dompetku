@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { TransactionCategoryPage } from '../transaction-category/transaction-category';
+
 import { DatabaseProvider } from '../../providers/database/database';
+import { UIProvider } from '../../providers/ui/ui';
 
 @Component({
   selector: 'page-transaction-add',
@@ -10,7 +13,8 @@ import { DatabaseProvider } from '../../providers/database/database';
 export class TransactionAddPage {
   form = {};
 
-  constructor(public navCtrl: NavController, private databaseprovider: DatabaseProvider) {
+  constructor(public navCtrl: NavController, private databaseprovider: DatabaseProvider, private ui: UIProvider) {
+    this.form['category'] = "Select category";
     var today = new Date();
     var year = today.getFullYear();
     var day = today.getDate().toString();
@@ -30,5 +34,15 @@ export class TransactionAddPage {
     });
     this.form = {};
     this.navCtrl.pop();
+  }
+
+  selectCategory(){
+    let modal = this.ui.modalCtrl.create(TransactionCategoryPage, {data: ""});
+    modal.onDidDismiss(data => {
+      if(data != null){
+        this.form['category'] = data;
+      }
+    });
+    modal.present();
   }
 }

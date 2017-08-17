@@ -6,6 +6,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
+import { TransactionAddPage } from '../pages/transaction-add/transaction-add';
 
 import { LoadingController } from 'ionic-angular';
 
@@ -23,16 +24,6 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loading: LoadingController, private googlePlus: GooglePlus, private databaseprovider: DatabaseProvider, private events: Events) {
-    /*
-    this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user.auth").then(value => {
-      if(value){
-        this.rootPage = TransactionListPage;
-        this.databaseprovider.nativeStorage.getItem("dompetku.difasanditya.com.user.imageUrl").then(data => {
-          this.image = data;
-        });
-      }
-    })
-    */
     let loader = this.loading.create({
       content: 'Please wait',
     });

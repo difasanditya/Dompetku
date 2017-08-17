@@ -8,21 +8,10 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-          <ion-label fixed>Rp</ion-label>
-          <ion-input max="999999999999999" type="number" [(ngModel)]="form.amount" placeholder="0" min="0"></ion-input>
+        <ion-label fixed>Rp</ion-label>
+        <ion-input max="999999999999999" type="number" [(ngModel)]="form.amount" placeholder="0" min="0"></ion-input>
       </ion-item>
-      <ion-item>
-          <ion-label><ion-icon name="md-pricetags"></ion-icon></ion-label>
-          <ion-select [(ngModel)]="form.category" placeholder="Select category" style="width: 100%;">
-            <h1>Income</h1>
-            <ion-option value="Award">Award</ion-option>
-            <ion-option value="Gifts">Gifts</ion-option>
-            <ion-option value="Salary">Salary</ion-option>
-            <ion-option value="Selling">Selling</ion-option>
-            <ion-option value="Interest Money">Interest Money</ion-option>
-            <ion-option value="Others">Others</ion-option>
-          </ion-select>
-      </ion-item>
+        <button text-left ion-button clear color="dark" (click)="selectCategory()"><ion-icon name="md-pricetags"></ion-icon> {{ form.category }}</button>
       <ion-item>
         <ion-label fixed><ion-icon name="md-list"></ion-icon></ion-label>
         <ion-input type="text" [(ngModel)]="form.description" placeholder="Insert description"></ion-input>
