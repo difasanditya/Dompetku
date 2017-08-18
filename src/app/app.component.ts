@@ -49,8 +49,7 @@ export class MyApp {
       });
     });
     this.pages = [
-      { title: 'Transaction', component: TransactionListPage },
-      //{ title: 'Database', component: DatabaseManipulationPage }
+      { title: 'Transaction', component: TransactionListPage }
     ];
     this.eventListener();
     loader.dismiss();

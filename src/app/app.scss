@@ -20,8 +20,8 @@ ion-menu{
         ion-toolbar{
             img{
                 background-color: #333;
-                height: 100px;
-                width: 100px;
+                height: 80px;
+                width: 80px;
                 border-radius: 100%;
             }
         }
@@ -35,4 +35,9 @@ ion-menu{
     background-color: #f4f4f4;
     border-radius: 100%;
     padding: 32px;
+}
+
+.card-md {
+    margin: 0 0 32px;
+    width: 100%;
 }

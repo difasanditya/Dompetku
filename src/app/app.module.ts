@@ -12,6 +12,7 @@ import { TransactionFuturePage } from '../pages/transaction-future/transaction-f
 import { TransactionViewPage } from '../pages/transaction-view/transaction-view';
 import { TransactionCategoryPage } from '../pages/transaction-category/transaction-category';
 import { TransactionEditPage } from '../pages/transaction-edit/transaction-edit';
+import { TransactionDiagramPage } from '../pages/transaction-diagram/transaction-diagram';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,7 +44,8 @@ const cloudSettings: CloudSettings = {
     TransactionFuturePage,
     TransactionViewPage,
     TransactionCategoryPage,
-    TransactionEditPage
+    TransactionEditPage,
+    TransactionDiagramPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ const cloudSettings: CloudSettings = {
     TransactionFuturePage,
     TransactionViewPage,
     TransactionCategoryPage,
-    TransactionEditPage
+    TransactionEditPage,
+    TransactionDiagramPage
   ],
   providers: [
     StatusBar,

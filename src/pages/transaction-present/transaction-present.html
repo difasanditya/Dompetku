@@ -8,28 +8,15 @@
         <h2>Inflow: {{ inflow }}</h2>
         <h2>Outflow: {{ outflow }}</h2>
         <h2>Total: {{ total }}</h2>
+        <button ion-button clear full (click)="viewReport()">View Report</button>
       </ion-item>
     </ion-card>
     <ion-card *ngFor="let date of dates">
-      <h1>{{ date.date }} : {{ date.total }}</h1>
-      <ion-item *ngFor="let data of date.data">
-        <button ion-button block (click)='viewTransaction(data.id);'>
-          <ion-grid no-padding>
-            <ion-row nowrap>
-              <ion-col>
-                <h2>{{ data.category }}</h2>
-              </ion-col>
-              <ion-col col-auto>
-                <h2 float-right>Rp {{ data.amount }}</h2>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <p>{{ data.description }}</p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </button>
+      <ion-card-header>{{ date.date }} : {{ date.total }}</ion-card-header>
+      <ion-item *ngFor="let data of date.data" (click)='viewTransaction(data.id);'>
+        <h2>{{ data.category }}</h2>
+        <h2 float-right>Rp {{ data.amount }}</h2>
+        <p>{{ data.description }}</p>
       </ion-item>
     </ion-card>
   </template>

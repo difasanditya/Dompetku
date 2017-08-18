@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { TransactionViewPage } from '../transaction-view/transaction-view';
+import { TransactionDiagramPage } from '../transaction-diagram/transaction-diagram';
 
 import { DatabaseProvider } from '../../providers/database/database';
 
@@ -75,6 +76,10 @@ export class TransactionPresentPage {
       });
       this.total = this.inflow - this.outflow;
     });
+  }
+
+  viewReport(){
+    this.rootNavCtrl.push(TransactionDiagramPage)
   }
 
   viewTransaction(ids){
