@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { TransactionListPage } from '../transaction-list/transaction-list';
 import { TransactionEditPage } from '../transaction-edit/transaction-edit';
 
 import { DatabaseProvider } from '../../providers/database/database';
@@ -29,5 +30,10 @@ export class TransactionViewPage {
 
   editTransaction(ids){
     this.navCtrl.push(TransactionEditPage, {id: ids});
+  }
+
+  removeTransaction(ids){
+    this.databaseprovider.removeTransaction(ids);
+    this.navCtrl.setRoot(TransactionListPage);
   }
 }

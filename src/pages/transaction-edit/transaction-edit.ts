@@ -54,4 +54,9 @@ export class TransactionEditPage {
     });
     this.navCtrl.setRoot(TransactionListPage);
   }
+
+  removeTransaction(){
+    this.databaseprovider.removeTransaction(this.id);
+    this.navCtrl.setRoot(TransactionListPage);
+  }
 }

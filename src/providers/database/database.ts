@@ -126,6 +126,10 @@ export class DatabaseProvider {
     });
   }
 
+  removeTransaction(id){
+    this.database.executeSql("DELETE FROM dompetku_transactions WHERE id=?;", [id]);
+  }
+
   getDatabaseState() {
     return this.databaseReady.asObservable();
   }
