@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { TransactionEditPage } from '../transaction-edit/transaction-edit';
+
 import { DatabaseProvider } from '../../providers/database/database';
 
 @Component({
@@ -23,5 +25,9 @@ export class TransactionViewPage {
       this.transaction['description'] = data['description'];
       this.transaction['date'] = data['date'];
     });
+  }
+
+  editTransaction(ids){
+    this.navCtrl.push(TransactionEditPage, {id: ids});
   }
 }

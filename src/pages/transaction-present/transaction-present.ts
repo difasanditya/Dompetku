@@ -10,7 +10,7 @@ import { DatabaseProvider } from '../../providers/database/database';
   templateUrl: 'transaction-present.html',
 })
 export class TransactionPresentPage {
-  empty: boolean = true;
+  empty: boolean = false;
   dates = [];
   inflow: number = 0;
   outflow: number = 0;

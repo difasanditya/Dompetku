@@ -112,6 +112,20 @@ export class DatabaseProvider {
     });
   }
 
+  updateTransaction(id, amount, category, description, date){
+    date = date.split("-");
+    let day = date[2];
+    let month = date[1];
+    let year = date[0];
+    let data = [amount, category, description, day, month, year];
+    return this.database.executeSql("UPDATE dompetku_transactions SET amount=?, category=?, description=?, date=?, month=?, year=? WHERE id="+id+";", data).then(data => {
+      return data;
+    }, err => {
+      console.log('Error: ', err);
+      return err;
+    });
+  }
+
   getDatabaseState() {
     return this.databaseReady.asObservable();
   }

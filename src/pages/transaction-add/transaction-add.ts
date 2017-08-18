@@ -25,7 +25,7 @@ export class TransactionAddPage {
     if(today.getMonth() + 1 < 10) {
         month = '0' + month;
     } 
-    this.form['date'] = year + '-' + month + '-'+day;
+    this.form['date'] = year + '-' + month + '-' + day;
   }
 
   addTransaction(){

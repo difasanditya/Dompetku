@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="dompetku-green">
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="editTransaction(id);">
         <ion-icon name="md-create"></ion-icon>
       </button>
     </ion-buttons>
@@ -27,7 +27,7 @@
       </ion-item>
       <ion-item>
         <ion-label class="label"><ion-icon name="md-list"></ion-icon></ion-label>
-        <ion-label class="content" teext-wrap>{{ transaction.description }}</ion-label>
+        <ion-label class="content" text-wrap>{{ transaction.description }}</ion-label>
       </ion-item>
       <ion-item>
         <ion-label class="label"><ion-icon name="md-calendar"></ion-icon></ion-label>
