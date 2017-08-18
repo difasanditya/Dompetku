@@ -1,0 +1,12 @@
+page-transaction-view {
+    $text-input-md-margin-start: 8px;
+    .label {
+        max-width: 32px !important;
+        ion-icon{
+            color: #999;
+        }
+    }
+    .content {
+        max-width: initial !important;
+    }
+}

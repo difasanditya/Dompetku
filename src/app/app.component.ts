@@ -6,10 +6,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { LoginPage } from '../pages/login/login';
 import { TransactionListPage } from '../pages/transaction-list/transaction-list';
-import { TransactionAddPage } from '../pages/transaction-add/transaction-add';
 
 import { LoadingController } from 'ionic-angular';
-
 import { DatabaseProvider } from '../providers/database/database';
 
 @Component({

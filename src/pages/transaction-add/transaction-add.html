@@ -11,7 +11,7 @@
         <ion-label fixed>Rp</ion-label>
         <ion-input max="999999999999999" type="number" [(ngModel)]="form.amount" placeholder="0" min="0"></ion-input>
       </ion-item>
-        <button text-left ion-button clear color="dark" (click)="selectCategory()"><ion-icon name="md-pricetags"></ion-icon> {{ form.category }}</button>
+      <button text-left ion-button clear color="dark" (click)="selectCategory()"><ion-icon name="md-pricetags"></ion-icon> {{ form.category }}</button>
       <ion-item>
         <ion-label fixed><ion-icon name="md-list"></ion-icon></ion-label>
         <ion-input type="text" [(ngModel)]="form.description" placeholder="Insert description"></ion-input>

@@ -78,8 +78,6 @@ export class TransactionPresentPage {
   }
 
   viewTransaction(ids){
-    this.rootNavCtrl.push(TransactionViewPage, {
-      id: ids
-    })
+    this.rootNavCtrl.push(TransactionViewPage, {id: ids})
   }
 }
